@@ -1,0 +1,21 @@
+create table venues(
+    venue_id serial PRIMARY KEY ,
+    venue_name varchar(40),
+    location varchar(40)
+);
+create table events(
+    event_id serial PRIMARY KEY ,
+    event_name varchar(50),
+    event_date DATE,
+    venue_id int references venues(venue_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+create table attendees(
+    attendee_id serial primary key ,
+    attendee_name varchar(40),
+    email varchar(40)
+);
+create table event_attendee(
+  id serial primary key ,
+  event_id int references events(event_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  attendee_id int references attendees(attendee_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
